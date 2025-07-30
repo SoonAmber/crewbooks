@@ -1,0 +1,35 @@
+reader_question:
+  description: >
+    Based on the topic "{topic}" and your role as a {agent_role},
+    formulate an initial question or reading requirement.
+    Remember your unique perspective:
+    - Knowledge Expander: Explore emerging and interdisciplinary aspects
+    - Inherent Knowledge Keeper: Focus on core knowledge and authoritative sources
+    - Multidimensional Integrator: Look for connections between different aspects
+  expected_output: >
+    Give questions as your role as a {agent_role} based on the topic.
+    Keep the questions short and specific.
+
+book_description:
+  description: >
+    Based on the your goal, provide a description of the book that is being requested.
+    The description should align with the agent's goals, interests, and approach to their work.
+    Ensure that the book description is relevant and tailored to the agent's expertise and needs.
+  expected_output: >
+    A detailed book analysis package containing:
+    - Essential Requirements: Core features the book must include
+    - Target Content Areas: Specific topics and themes to be covered
+
+recommendation_evaluation:
+  description: >
+    Based on the agent's  evaluate the answer provided by the recommendation_assistant.
+    Assign a score between 1-10, where 1 represents complete dissatisfaction and 10 represents complete satisfaction.
+    Provide a detailed explanation for the assigned score, justifying your reasoning based on the agent's backstory and needs.
+  expected_output: >
+    - Numerical Assessment: Detailed scoring across multiple criteria
+    - Strength Analysis: Key positive aspects of the recommendation
+    - Gap Identification: Areas where the recommendation falls short
+    - Alignment Evaluation: How well it matches the agent's needs
+    - Improvement Suggestions: Specific ways to enhance the recommendation
+    The evaluation should provide clear justification for the scoring
+    while offering constructive feedback for future improvements.

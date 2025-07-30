@@ -1,0 +1,81 @@
+demand_translation:
+  description: >
+    The user provides a demand "{query}" which is translated into a clear set of tasks by the Demand Assistant.
+    This demand comes from {reader_role}'s perspective, with focus on {reader_focus}.
+    This task translation process ensures that the problem is broken down into smaller, manageable components.
+  expected_output: >
+    forming a list,contain A clear and actionable set of the title keywords of related books derived from the user's original demand.
+
+search:
+  description: >
+    The Retrieval Assistant performs a comprehensive search for relevant resources based on demand "{query}":
+    1. First, search the local library catalog at {file_path}
+    2. Then, check external resources at {external_url}
+    3. Combine findings from both sources
+    
+    Search process should:
+    - Start with local catalog search
+    - Extend to external database if needed
+    - Track the source of each resource found
+    - Organize results in a structured format
+    
+    Based on the previous analysis ({previous_task}), gather all possible 
+    materials related to the user's demand.
+    Consider the reader's perspective: {reader_role} with focus on {reader_focus}
+    
+  expected_output: >
+    Output a list containing all findings, with each entry including:
+    - Resource details (title, author, etc.)
+    - Source (either "local_catalog" or the specific URL)
+    - Availability status
+    - Any additional relevant metadata
+
+employee_organization:
+  description: >
+    Evaluates and filters the resources based on authenticity, authority, and relevance.
+    Consider the specific requirements from {reader_role} perspective.
+    Focus areas based on reader type:
+    - Original query: "{query}"
+    - Reader focus: {reader_focus}
+    After the evaluation, the Organization Assistant compiles the results
+    and passes them to the Collection Assistant for further categorization and organization within the library system.
+  expected_output: >
+    A list of evaluated and filtered resources that are ready to be cataloged and categorized
+
+employee_collaboration:
+  description: >
+    Based on the conclusions provided by the Organization Assistant for query "{query}",
+    line by line retrieval in the csv provided at {file_path},
+    if there are books in the list that are not in the existing csv resource,
+    update the csv by writing an information entry for that book and importing it into the csv.
+    If the book exists, no action is required.
+  expected_output: >
+    A list of evaluated and filtered resources that are ready to be cataloged and categorized, followed by the update in the system.
+
+results_and_feedback:
+  description: >
+    Review and analyze the final list provided by collection_assistant
+    Match each item against available library resources in the CSV
+    Generate personalized recommendations based on:
+    - Original query: "{query}"
+    - Reader role: {reader_role}
+    - Reader focus: {reader_focus}
+    - User's specific needs identified by demand_assistant: {demand_analysis}
+    - Resource availability in the library database
+    - Relevance to user's requirements
+    Track user feedback on recommendations
+    Document both successful matches and areas for improvement
+    Maintain a feedback loop for continuous recommendation refinement
+  expected_output: >
+    Recommendation Report:
+    List of matched resources with detailed justification
+    Personalization factors considered for each recommendation
+    Availability status of each recommended item
+    Alternative suggestions where primary recommendations unavailable
+    Feedback Collection:
+    User satisfaction metrics for each recommendation
+    Specific feedback on resource relevance
+    Areas where recommendations met/didn't meet expectations
+    Suggestions for future improvement
+    Results Analysis:
+    Success rate of recommendations
